@@ -1,50 +1,40 @@
-# Q&A Chatbot
-#from langchain.llms import OpenAI
-
-from dotenv import load_dotenv
-
-load_dotenv()  # take environment variables from .env.
-
 import streamlit as st
-import os
-import pathlib
-import textwrap
 
-import google.generativeai as genai
+def main():
+    st.title("Welcome to our Intelligent Bot Platform!👋")
 
-from IPython.display import display
-from IPython.display import Markdown
+    st.markdown(
+        """
+        Hello there, dear friend! Welcome to our innovative platform where cutting-edge technology meets user-friendly solutions. 
+        We're thrilled to have you here as we introduce you to three powerful features that will transform the way you interact with information – our Q&A Bot, Text Summarization Bot, and Image Recognition Bot.
+        """
+    )
 
+    st.subheader("🤖Q&A tool: Unlocking Knowledge with Ease")
+    st.write(
+        "Say goodbye to endless searches and information overload. Our Q&A Bot is designed to simplify your quest for knowledge. "
+        "Just ask a question, and let our intelligent bot scour the web to provide you with accurate and relevant answers. "
+        "Whether you're a student, a professional, or just curious, our Q&A Bot is your go-to companion for instant information retrieval."
+    )
 
-def to_markdown(text):
-  text = text.replace('•', '  *')
-  return Markdown(textwrap.indent(text, '> ', predicate=lambda _: True))
+    st.subheader("🔍Text Summarization tool: Condense Complexity, Embrace Simplicity")
+    st.write(
+        "In a world filled with information, the ability to distill key insights is invaluable. Our Text Summarization Bot does just that – "
+        "it takes lengthy articles, documents, or paragraphs and condenses them into clear and concise summaries. "
+        "Save time, stay informed, and grasp the essence of content effortlessly with this feature."
+    )
 
-os.getenv("GOOGLE_API_KEY")
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+    st.subheader("🔆Image Recognition tool: Seeing the World in a New Light")
+    st.write(
+        "A picture is worth a thousand words, and our Image Recognition Bot takes this to a whole new level. "
+        "Upload an image, and watch as our bot identifies objects, landmarks, and even provides contextual information. "
+        "Whether you're a photography enthusiast or someone looking to extract details from images, our Image Recognition Bot is here to add a visual dimension to your exploration."
+    )
 
-## Function to load OpenAI model and get respones
+    st.write(
+        "Ready to embark on a journey of seamless information discovery? Dive into the world of possibilities with our three exceptional bots. "
+        "Empower yourself with quick answers, concise summaries, and visual insights – all at your fingertips. Your digital companion awaits you. Let's explore, learn, and simplify together!"
+    )
 
-def get_gemini_response(question):
-    model = genai.GenerativeModel('gemini-pro')
-    response = model.generate_content(question)
-    return response.text
-
-##initialize our streamlit app
-
-st.set_page_config(page_title="Q&A Demo")
-
-st.header("Gemini Application")
-
-input=st.text_input("Input: ",key="input")
-
-
-submit=st.button("Ask the question")
-
-## If ask button is clicked
-
-if submit:
-    
-    response=get_gemini_response(input)
-    st.subheader("The Response is")
-    st.write(response)
+if __name__ == "__main__":
+    main()
